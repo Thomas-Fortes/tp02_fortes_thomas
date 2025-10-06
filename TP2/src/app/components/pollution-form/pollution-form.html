@@ -1,0 +1,145 @@
+<div class="container">
+  <div *ngIf="!isSubmitted" class="form-container">
+    <h2>Déclaration de Pollution</h2>
+    
+    <form [formGroup]="pollutionForm" (ngSubmit)="onSubmit()">
+      
+      <!-- Titre -->
+      <div class="form-group">
+        <label for="titre">Titre de la pollution *</label>
+        <input 
+          type="text" 
+          id="titre" 
+          formControlName="titre"
+          [class.invalid]="isFieldInvalid('titre')"
+          placeholder="Ex: Dépôt de déchets sur le trottoir"
+        >
+        <span class="error" *ngIf="isFieldInvalid('titre')">
+          {{ getErrorMessage('titre') }}
+        </span>
+      </div>
+
+      <!-- Type -->
+      <div class="form-group">
+        <label for="type">Type de pollution *</label>
+        <select 
+          id="type" 
+          formControlName="type"
+          [class.invalid]="isFieldInvalid('type')"
+        >
+          <option value="">-- Sélectionnez un type --</option>
+          <option *ngFor="let type of typesPollution" [value]="type">
+            {{ type }}
+          </option>
+        </select>
+        <span class="error" *ngIf="isFieldInvalid('type')">
+          {{ getErrorMessage('type') }}
+        </span>
+      </div>
+
+      <!-- Description -->
+      <div class="form-group">
+        <label for="description">Description *</label>
+        <textarea 
+          id="description" 
+          formControlName="description"
+          [class.invalid]="isFieldInvalid('description')"
+          rows="4"
+          placeholder="Décrivez la pollution observée..."
+        ></textarea>
+        <span class="error" *ngIf="isFieldInvalid('description')">
+          {{ getErrorMessage('description') }}
+        </span>
+      </div>
+
+      <!-- Date -->
+      <div class="form-group">
+        <label for="dateObservation">Date de l'observation *</label>
+        <input 
+          type="date" 
+          id="dateObservation" 
+          formControlName="dateObservation"
+          [class.invalid]="isFieldInvalid('dateObservation')"
+        >
+        <span class="error" *ngIf="isFieldInvalid('dateObservation')">
+          {{ getErrorMessage('dateObservation') }}
+        </span>
+      </div>
+
+      <!-- Lieu -->
+      <div class="form-group">
+        <label for="lieu">Lieu *</label>
+        <input 
+          type="text" 
+          id="lieu" 
+          formControlName="lieu"
+          [class.invalid]="isFieldInvalid('lieu')"
+          placeholder="Ex: Rue de la République, Paris"
+        >
+        <span class="error" *ngIf="isFieldInvalid('lieu')">
+          {{ getErrorMessage('lieu') }}
+        </span>
+      </div>
+
+      <!-- Latitude et Longitude -->
+      <div class="form-row">
+        <div class="form-group">
+          <label for="latitude">Latitude *</label>
+          <input 
+            type="number" 
+            id="latitude" 
+            formControlName="latitude"
+            [class.invalid]="isFieldInvalid('latitude')"
+            step="any"
+            placeholder="Ex: 48.8566"
+          >
+          <span class="error" *ngIf="isFieldInvalid('latitude')">
+            {{ getErrorMessage('latitude') }}
+          </span>
+        </div>
+
+        <div class="form-group">
+          <label for="longitude">Longitude *</label>
+          <input 
+            type="number" 
+            id="longitude" 
+            formControlName="longitude"
+            [class.invalid]="isFieldInvalid('longitude')"
+            step="any"
+            placeholder="Ex: 2.3522"
+          >
+          <span class="error" *ngIf="isFieldInvalid('longitude')">
+            {{ getErrorMessage('longitude') }}
+          </span>
+        </div>
+      </div>
+
+      <!-- Photo URL -->
+      <div class="form-group">
+        <label for="photoUrl">URL de la photo (optionnel)</label>
+        <input 
+          type="text" 
+          id="photoUrl" 
+          formControlName="photoUrl"
+          [class.invalid]="isFieldInvalid('photoUrl')"
+          placeholder="https://example.com/photo.jpg"
+        >
+        <span class="error" *ngIf="isFieldInvalid('photoUrl')">
+          {{ getErrorMessage('photoUrl') }}
+        </span>
+      </div>
+
+      <!-- Bouton Submit -->
+      <button type="submit" class="btn-submit">
+        Déclarer la pollution
+      </button>
+    </form>
+  </div>
+
+  <!-- Récapitulatif -->
+  <app-pollution-recap 
+    *ngIf="isSubmitted && pollutionData" 
+    [pollution]="pollutionData"
+    (reset)="resetForm()"
+  ></app-pollution-recap>
+</div>

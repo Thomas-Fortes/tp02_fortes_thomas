@@ -1,12 +1,13 @@
-import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-
+import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { PollutionFormComponent } from './components/pollution-form/pollution-form'; 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
-  templateUrl: './app.html',
-  styleUrl: './app.css'
+  standalone: true,
+  imports: [CommonModule, PollutionFormComponent],
+  templateUrl: './app.html',    
+  styleUrl: './app.css'         
 })
-export class App {
-  protected readonly title = signal('TP2');
+export class AppComponent {
+  title = 'tp02-pollution';
 }
