@@ -2,8 +2,12 @@ services:
   - type: web
     name: tp02-pollution
     env: static
-    buildCommand: npm install && npm run build
-    staticPublishPath: ./dist/tp02-pollution/browser
+    buildCommand: npm ci && npm run build --configuration=production
+    staticPublishPath: dist/tp02-pollution/browser
+    headers:
+      - path: /*
+        name: Cache-Control
+        value: public, max-age=3600
     routes:
       - type: rewrite
         source: /*
