@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: tp02-pollution
+    env: static
+    buildCommand: npm install && npm run build
+    staticPublishPath: ./dist/tp02-pollution/browser
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
