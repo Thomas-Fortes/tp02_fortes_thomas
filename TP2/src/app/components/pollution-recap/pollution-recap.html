@@ -1,6 +1,6 @@
 <div class="recap-container">
   <div class="recap-header">
-    <h2>✅ Déclaration enregistrée</h2>
+    <h2>Déclaration enregistrée</h2>
     <p class="success-message">Merci pour votre contribution à la protection de l'environnement !</p>
   </div>
 
@@ -17,23 +17,23 @@
 
     <div class="recap-grid">
       <div class="recap-item">
-        <span class="label">📅 Date d'observation</span>
+        <span class="label">Date d'observation</span>
         <span class="value">{{ formatDate(pollution.dateObservation) }}</span>
       </div>
 
       <div class="recap-item">
-        <span class="label">📍 Lieu</span>
+        <span class="label">Lieu</span>
         <span class="value">{{ pollution.lieu }}</span>
       </div>
 
       <div class="recap-item">
-        <span class="label">🌍 Coordonnées GPS</span>
+        <span class="label">Coordonnées GPS</span>
         <span class="value">{{ pollution.latitude }}, {{ pollution.longitude }}</span>
       </div>
     </div>
 
     <div class="recap-section" *ngIf="pollution.photoUrl">
-      <h4>📸 Photo</h4>
+      <h4>Photo</h4>
       <div class="image-container">
         <img [src]="pollution.photoUrl" [alt]="pollution.titre" />
       </div>
